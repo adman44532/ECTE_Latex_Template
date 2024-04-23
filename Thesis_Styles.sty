@@ -1,0 +1,183 @@
+% ECTE499 Thesis Main Styles
+% Template by Adam Pigram
+
+% This file defines all document level stylings based on the original ECTE499 Latex Template
+
+% Expose the package name to be used within the main file.
+\ProvidesPackage{ThesisStyles}
+
+% List all of the required packages for the document (In addition any configuration for those packages)
+
+% Outline states:
+%   - 12 pt font
+%   - 35mm Left Margin, Remaining margins 25mm
+%   - Line Spacing 1.5
+
+% All other stylings are up to student preference.
+
+\RequirePackage[sort&compress,square,numbers]{natbib}
+\RequirePackage{graphicx}
+\RequirePackage{chngpage}
+\RequirePackage{setspace}
+\RequirePackage[left=35mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\RequirePackage{longtable}
+\RequirePackage{enumerate,paralist}
+\RequirePackage[labelfont=bf,justification=centering]{caption}
+\RequirePackage{latexsym}
+\RequirePackage{multirow}
+\RequirePackage{array}
+\RequirePackage{url}
+\RequirePackage{lscape}
+\RequirePackage{datetime}
+\RequirePackage{fancyhdr}
+\RequirePackage[compact]{titlesec}
+
+% Additional Formatting Settings
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{0pt}{\Huge}
+\titlespacing{\chapter}{0pt}{*-10}{*0}
+\titlespacing{\section}{0pt}{*-1}{*-1}
+\titlespacing{\subsection}{0pt}{*-1}{*-1}
+\titlespacing{\subsubsection}{0pt}{*-1}{*-1}
+
+\makeatletter
+\g@addto@macro\normalsize{\setlength\abovedisplayskip{0pt}}
+\g@addto@macro\normalsize{\setlength\belowdisplayskip{0pt}}
+\g@addto@macro\normalsize{\setlength\abovedisplayshortskip{0pt}}
+\g@addto@macro\normalsize{\setlength\belowdisplayshortskip{0pt}}
+\makeatother
+
+\setlength{\headheight}{15pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\bibsep}{0.0pt}
+\setlength{\bibhang}{0em}
+\setlength\extrarowheight{2pt}
+
+\def\bibfont{\footnotesize}
+
+% Header and footer configurations
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt} % no line in header area
+\rfoot{}
+\cfoot{}
+\lfoot{}
+
+% Custom Commands
+
+% Custom commands are set here to simplify the main document, creating macros for ease of use.
+
+\def\submitdate#1{\gdef\@submitdate{#1}}
+\def\degreetitle#1{\gdef\@degreetitle{#1}}
+\def\supervisor#1{\gdef\@supervisor{#1}}
+\def\studentid#1{\gdef\@studentid{#1}}
+\def\@title{}\def\@author{}
+\newif\iffigurespage \newif\iftablespage
+\figurespagetrue \tablespagetrue
+
+\def\titlep{
+	\thispagestyle{empty}
+	\begin{center}
+	\Large{\textbf{\@title}}
+	\vskip13mm
+	\large{A thesis submitted in partial fulfilment of the\\
+	requirements for the award of the degree}
+	\vskip12mm
+	\large{\textbf{\@degreetitle}}
+	\vskip12mm
+	\large{\textbf{from}}
+	\vskip12mm
+	\large{\textbf{University of Wollongong}}
+	\vskip12mm
+	\large{\textbf{by}}
+	\vskip12mm
+	\textbf{\@author}
+	\vskip12mm
+	\textbf{School of Electrical, Computer and Telecommunications Engineering}
+	\vskip12mm
+	\textbf{\@submitdate}
+	\vskip12mm
+	Supervisor:~\@supervisor
+	\end{center}
+	\newpage}
+\renewcommand{\baselinestretch}{1.5}
+\def\sog{
+	\thispagestyle{empty}
+	\chapter*{Statement of Originality}
+
+I, \@author, declare that this thesis, submitted as part of the
+requirements for the award of Bachelor of Engineering, in the School of
+Electrical, Computer and Telecommunications Engineering, University of
+Wollongong, is wholly my own work unless otherwise referenced or acknowledged.
+The document has not been submitted for qualifications or assessment at any
+other academic institution.
+	
+As author of this thesis, I also hereby grant, subject to any prior confidentially agreements, SECTE permission, to use, distribute, publish, exhibit, record, digitize broadcast, reproduce and archive this work for the purposes of further research and teaching.
+
+\textit{(strike out that which does not apply)}\\
+This thesis;\\
+\begin{tabular}{p{5cm} l }
+ \ IS &\\
+ \ IS NOT &\\ 
+\end{tabular}\\
+
+subject to a prior confidentially agreement. 
+
+	\vspace{2cm}
+	\begin{tabular}{r p{8cm}}
+	Signature:&\hrulefill\\
+	&\\
+	Print Name:&\hrulefill\\
+	&\\
+	Student ID Number:&\@studentid\\
+	&\\
+	Date:&\hrulefill\\
+	\end{tabular}
+	\newpage}
+
+\def\beforeabstract{
+	\pagenumbering{roman}
+	\pagestyle{empty}
+	\titlep
+	\pagestyle{plain}}
+
+\def\tocsection#1{
+	\chapter*{#1}
+	\addcontentsline{toc}{chapter}{#1}}
+
+\def\notocsection#1{
+	\chapter*{#1}}
+
+\def\afterabstract{
+	\newpage
+	\sog
+	\tableofcontents
+	\newpage
+	\iftablespage
+		{\addvspace{10pt}
+		\let\saveaddvspace=\addvspace
+		\def\addvspace##1{}
+		\listoftables
+		\let\addvspace=\saveaddvspace}
+		\newpage
+	\fi
+	\iffigurespage
+		{\addvspace{10pt}
+		\let\saveaddvspace=\addvspace
+		\def\addvspace##1{}
+		\listoffigures
+		\let\addvspace=\saveaddvspace}
+		\newpage
+	\fi
+	\pagestyle{headings}
+}
+
+% Start with pagestyle{headings} in case front matter isn't processed
+\pagestyle{headings}
+\makeatother

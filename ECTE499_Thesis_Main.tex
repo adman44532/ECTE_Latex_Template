@@ -1,0 +1,45 @@
+% ECTE499 LaTeX Report Template
+% Created by Adam Pigram
+% Based on original ECTE457 Template
+
+\documentclass[12pt,a4paper,fleqn]{report}
+\usepackage{ThesisStyles}
+
+% Student Information
+\degreetitle{Bachelor of Engineering (Electrical), Bachelor of Mathematics}
+\submitdate{June, 2013}
+\supervisor{Dr John Smith}
+\title{The Title of My Thesis}
+\author{Joe E. Blogs}
+\studentid{1234567}
+
+\begin{document}
+\beforeabstract
+
+\include{Front Matter/Abstract}
+
+\include{Front Matter/Acknowledgements}
+
+\afterabstract
+
+\include{Front Matter/Glossary}
+
+\include{Front Matter/Changes}
+
+% ---- v Main Content v ---- %
+
+\include{Body/Chapter_1_Introduction}
+\include{Body/Chapter_2_Literature Review}
+\include{Body/Chapter_3_Design_Analysis}
+\include{Body/Chapter_X_Conclusions}
+
+% ---- ^ Main Content ^ ---- %
+
+\bibliographystyle{unsrtnat}
+\addcontentsline{toc}{chapter}{References}
+\bibliography{thesis}
+\label{refs}
+\appendix
+\input{appendix1}
+\input{appendix2}
+\end{document}
