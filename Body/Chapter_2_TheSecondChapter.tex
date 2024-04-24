@@ -1,0 +1,51 @@
+\chapter{Another Chapter}\label{chap:another}
+
+This is Chapter number~\ref{chap:another}. This is where
+things start to get very dull.
+
+Go on and describe contents of chapter, blah blah blah \ldots
+
+
+\section{First Section in Chapter}\label{another:sec}
+
+This is section~\ref{another:sec}.
+
+\section{Another Section in Another Chapter}
+
+We're very keen so we are referencing Table~\ref{conversion}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l|l|l|l|}
+\multicolumn{1}{l}{}&\multicolumn{1}{l}{}&\multicolumn{2}{c}{TO}\\ 
+\cline{3-4}
+\multicolumn{1}{l}{}&\multicolumn{1}{c|}{}&\multicolumn{1}{c|}{AC}&\multicolumn{1}{c|}{DC}\\ 
+\cline{2-4}
+\multirow{2}{*}{FROM}&\multicolumn{1}{c|}{AC}&Cycloconverter&Rectifier\\ 
+&\multicolumn{1}{c|}{DC}&Inverter&Chopper\\ 
+\cline{2-4}
+\end{tabular}
+\caption[Caption for List of Tables]{Classification of Conversion Circuits}
+\label{conversion}
+\end{table}
+
+\section{Complicated Equations}
+
+One thing that \LaTeX is really good at is typesetting mathematics.
+\begin{equation}
+\frac{d^2 \Phi_q(\theta)}{d\theta^2}-\frac{2\mu_o R^2 L_R}{p^2 g_e}\Phi_q(\theta)
++\frac{\mu_o R^2 L_R}{p^2 g_e} \left[J(\theta)-J(\pi-\theta)\right]=0
+\label{aeqn:mm16}
+\end{equation}
+Arrays are used for really long equations.
+\begin{eqnarray}
+2RJ_q=2A\left[\frac{\Re_qR}{\gamma}(e^{\gamma\frac{\theta_p}{2}}-e^{-\gamma\frac{\theta_p}{2}})
++p\Re_{side}(e^{\gamma\frac{\theta_p}{2}}+e^{-\gamma\frac{\theta_p}{2}})\right]+
+\nonumber\\
+\frac{4cJ_q}{b+1}\left[\Re_qR\sin\frac{\theta_p}{2}+p\Re_{side}\cos\frac{\theta_p}{2}\right]
+\end{eqnarray}
+
+
+\section{Summary}
+
+Blah blah \ldots

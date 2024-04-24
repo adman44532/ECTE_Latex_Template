@@ -3,7 +3,7 @@
 % Based on original ECTE457 Template
 
 \documentclass[12pt,a4paper,fleqn]{report}
-\usepackage{ThesisStyles}
+\usepackage{Thesis_Styles}
 
 % Student Information
 \degreetitle{Bachelor of Engineering (Electrical), Bachelor of Mathematics}
@@ -14,32 +14,41 @@
 \studentid{1234567}
 
 \begin{document}
+
+
 \beforeabstract
 
-\include{Front Matter/Abstract}
+\include{Front_Matter/Abstract}
 
-\include{Front Matter/Acknowledgements}
+\include{Front_Matter/Acknowledgements}
 
 \afterabstract
 
-\include{Front Matter/Glossary}
+\include{Front_Matter/Glossary}
 
-\include{Front Matter/Changes}
+\include{Front_Matter/Changes}
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}  % \nouppercase ensures that the text is not converted to uppercase
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}  % Adjust this value for a thicker or thinner line
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}}
 
 % ---- v Main Content v ---- %
 
-\include{Body/Chapter_1_Introduction}
-\include{Body/Chapter_2_Literature Review}
-\include{Body/Chapter_3_Design_Analysis}
-\include{Body/Chapter_X_Conclusions}
+\include{Body/Chapter_1_MyFirstChapter}
+\include{Body/Chapter_2_TheSecondChapter}
+% Add More Chapters here
 
 % ---- ^ Main Content ^ ---- %
 
 \bibliographystyle{unsrtnat}
 \addcontentsline{toc}{chapter}{References}
-\bibliography{thesis}
+\bibliography{Body/References}
 \label{refs}
 \appendix
-\input{appendix1}
-\input{appendix2}
+\input{Back_Matter/Appendicies.tex}
 \end{document}

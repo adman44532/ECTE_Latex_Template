@@ -4,7 +4,7 @@
 % This file defines all document level stylings based on the original ECTE499 Latex Template
 
 % Expose the package name to be used within the main file.
-\ProvidesPackage{ThesisStyles}
+\ProvidesPackage{Thesis_Styles}
 
 % List all of the required packages for the document (In addition any configuration for those packages)
 
@@ -33,22 +33,17 @@
 \RequirePackage[compact]{titlesec}
 
 % Additional Formatting Settings
-
-\pagenumbering{arabic}
-\pagestyle{fancy}
-
+\makeatletter
 \titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{0pt}{\Huge}
 \titlespacing{\chapter}{0pt}{*-10}{*0}
 \titlespacing{\section}{0pt}{*-1}{*-1}
 \titlespacing{\subsection}{0pt}{*-1}{*-1}
 \titlespacing{\subsubsection}{0pt}{*-1}{*-1}
 
-\makeatletter
 \g@addto@macro\normalsize{\setlength\abovedisplayskip{0pt}}
 \g@addto@macro\normalsize{\setlength\belowdisplayskip{0pt}}
 \g@addto@macro\normalsize{\setlength\abovedisplayshortskip{0pt}}
 \g@addto@macro\normalsize{\setlength\belowdisplayshortskip{0pt}}
-\makeatother
 
 \setlength{\headheight}{15pt}
 \setlength{\parindent}{0pt}
@@ -59,15 +54,7 @@
 
 \def\bibfont{\footnotesize}
 
-% Header and footer configurations
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyhead[R]{\thepage}
-\fancyhead[L]{\nouppercase{\leftmark}}
-\renewcommand{\headrulewidth}{0pt} % no line in header area
-\rfoot{}
-\cfoot{}
-\lfoot{}
+
 
 % Custom Commands
 
@@ -105,7 +92,8 @@
 	\vskip12mm
 	Supervisor:~\@supervisor
 	\end{center}
-	\newpage}
+	\newpage
+}
 \renewcommand{\baselinestretch}{1.5}
 \def\sog{
 	\thispagestyle{empty}
@@ -139,20 +127,24 @@ subject to a prior confidentially agreement.
 	&\\
 	Date:&\hrulefill\\
 	\end{tabular}
-	\newpage}
+	\newpage
+}
 
 \def\beforeabstract{
 	\pagenumbering{roman}
 	\pagestyle{empty}
 	\titlep
-	\pagestyle{plain}}
+	\pagestyle{plain}
+}
 
 \def\tocsection#1{
 	\chapter*{#1}
-	\addcontentsline{toc}{chapter}{#1}}
+	\addcontentsline{toc}{chapter}{#1}
+}
 
 \def\notocsection#1{
-	\chapter*{#1}}
+	\chapter*{#1}
+}
 
 \def\afterabstract{
 	\newpage
