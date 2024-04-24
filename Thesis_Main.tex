@@ -1,11 +1,10 @@
 % ECTE499 LaTeX Report Template
 % Created by Adam Pigram
-% Based on original ECTE457 Template
-
+% Based on original ECTE45x Template
 \documentclass[12pt,a4paper,fleqn]{report}
 \usepackage{Thesis_Styles}
 
-% Student Information
+% Student Information - Fill this section out
 \degreetitle{Bachelor of Engineering (Electrical), Bachelor of Mathematics}
 \submitdate{June, 2013}
 \supervisor{Dr John Smith}
@@ -15,7 +14,7 @@
 
 \begin{document}
 
-
+% ----- v Front Matter v -----
 \beforeabstract
 
 \include{Front_Matter/Abstract}
@@ -28,27 +27,30 @@
 
 \include{Front_Matter/Changes}
 
+% ---- ^ Front Matter ^ ---- %
+
+
+% ---- v Body v ---- %
+
+% After the Front Matter, some styles need to change, placing them here ensures they are updated at the correct time.
 \pagenumbering{arabic}
 \pagestyle{fancy}
-\fancyfoot{}
-\fancyhf{}
-\fancyhead[L]{\nouppercase{\leftmark}}  % \nouppercase ensures that the text is not converted to uppercase
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}  % Adjust this value for a thicker or thinner line
 \renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}}
-
-% ---- v Main Content v ---- %
 
 \include{Body/Chapter_1_MyFirstChapter}
 \include{Body/Chapter_2_TheSecondChapter}
 % Add More Chapters here
 
-% ---- ^ Main Content ^ ---- %
-
 \bibliographystyle{unsrtnat}
 \addcontentsline{toc}{chapter}{References}
 \bibliography{Body/References}
 \label{refs}
+
+% ---- ^ Body ^ ---- %
+
+
+% ----- v Back Matter v -----
 \appendix
-\input{Back_Matter/Appendicies.tex}
+\input{Back_Matter/Appendices.tex}
+% ----- ^ Back Matter ^ -----
 \end{document}

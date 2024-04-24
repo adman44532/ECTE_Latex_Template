@@ -31,6 +31,8 @@
 \RequirePackage{datetime}
 \RequirePackage{fancyhdr}
 \RequirePackage[compact]{titlesec}
+\RequirePackage{listings}
+\RequirePackage{color}
 
 % Additional Formatting Settings
 \makeatletter
@@ -54,7 +56,30 @@
 
 \def\bibfont{\footnotesize}
 
+\fancyfoot{}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}  % \nouppercase ensures that the text is not converted to uppercase
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}  % Adjust this value for a thicker or thinner line
 
+% Code Blocks
+% Edit to better style for a specific language
+\lstset{frame=tb,
+  language=c++,
+  aboveskip=5mm,
+  belowskip=5mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{blue},
+  keywordstyle=\color{red},
+  commentstyle=\color{pink},
+  stringstyle=\color{green},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 % Custom Commands
 
