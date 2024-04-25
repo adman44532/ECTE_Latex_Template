@@ -84,6 +84,8 @@ For doing it locally, on Windows you can use a distribution like MikTex and a co
 
 [Windows + VSCode install](https://www.youtube.com/watch?v=4lyHIQl4VM8)
 
+For users of the Nix package manager, a flake is included that will spin up a shell with all of the required texlive dependencies by entering this repo's directory and calling ```nix develop```.
+
 ## Using LaTeX
 
 Here is a summarised list of examples for reference when writing your report.
