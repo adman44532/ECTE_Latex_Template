@@ -125,6 +125,11 @@ This symbol when delcaring an element e.g. `\section`, can be used to exclude it
 ### New lines
 When you want to create space, use `\\` to insert a break. `\\ \\` Can also be used in the same line to separate paragraphs.
 
+### New Paragraphs
+Some LaTeX documents use `\\\\` to separate paragraphs, however this can lead to a `underfull \hbox (badness 10000)LaTeX` error. For more information refer to [Here](https://tex.stackexchange.com/questions/334246/what-does-the-phrase-underfull-hbox-badness-10000-in-paragraph-actually-mea)
+
+To properly do new paragraphs, this template uses the parskip package. To place a paragraph break use `\par`.
+
 ### New Pages
 When wanting to do a page break, use `\newpage`.
 
