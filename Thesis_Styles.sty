@@ -34,6 +34,13 @@
 \RequirePackage{listings}
 \RequirePackage{color}
 \RequirePackage{parskip}
+\RequirePackage{float}
+\RequirePackage{subcaption}
+\RequirePackage{pdfpages}
+\RequirePackage{ulem}
+\RequirePackage{calligra}
+\RequirePackage{svg} % Requires Inkscape to be
+\RequirePackage{xifthen}
 
 % Additional Formatting Settings
 \makeatletter
@@ -54,6 +61,7 @@
 \setlength{\bibsep}{0.0pt}
 \setlength{\bibhang}{0em}
 \setlength\extrarowheight{2pt}
+\renewcommand{\baselinestretch}{1.5}
 
 \def\bibfont{\footnotesize}
 
@@ -65,21 +73,41 @@
 
 % Code Blocks
 % Edit to better style for a specific language
-\lstset{frame=tb,
-  language=c++,
-  aboveskip=5mm,
-  belowskip=5mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=left,
-  numberstyle=\tiny\color{blue},
-  keywordstyle=\color{red},
-  commentstyle=\color{pink},
-  stringstyle=\color{green},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
+
+\lstdefinestyle{html}{
+	language=HTML,
+	frame=tb,
+	aboveskip=5mm,
+	belowskip=5mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\tiny\color{blue},
+	keywordstyle=\color{blue},
+	commentstyle=\color{green},
+	stringstyle=\color{red},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	morekeywords={html, head, body, div, span, class, id, title, meta, link, script, style}
+}
+
+\lstdefinestyle{c++}{frame=tb,
+	language=c++,
+	aboveskip=5mm,
+	belowskip=5mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\tiny\color{blue},
+	keywordstyle=\color{red},
+	commentstyle=\color{pink},
+	stringstyle=\color{green},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
 }
 
 % Custom Commands
@@ -93,65 +121,85 @@
 \def\@title{}\def\@author{}
 \newif\iffigurespage \newif\iftablespage
 \figurespagetrue \tablespagetrue
+\def\signaturefilepath#1{\gdef\@signaturefilepath{#1}}
+\def\isunderprioragreement#1{\gdef\@isunderprioragreement{#1}}
 
 \def\titlep{
 	\thispagestyle{empty}
 	\begin{center}
-	\Large{\textbf{\@title}}
-	\vskip10mm
-	\large{A thesis submitted in partial fulfilment of the\\
-	requirements for the award of the degree}
-	\vskip9mm
-	\large{\textbf{\@degreetitle}}
-	\vskip9mm
-	\large{\textbf{from}}
-	\vskip9mm
-	\large{\textbf{University of Wollongong}}
-	\vskip9mm
-	\large{\textbf{by}}
-	\vskip9mm
-	\textbf{\@author}
-	\vskip9mm
-	\textbf{School of Electrical, Computer and Telecommunications Engineering}
-	\vskip9mm
-	\textbf{\@submitdate}
-	\vskip9mm
-	Supervisor:~\@supervisor
+		\Large{\textbf{\@title}}
+		\vskip10mm
+		\large{A thesis submitted in partial fulfilment of the\\
+			requirements for the award of the degree}
+		\vskip9mm
+		\large{\textbf{\@degreetitle}}
+		\vskip9mm
+		\large{\textbf{from}}
+		\vskip9mm
+		\large{\textbf{University of Wollongong}}
+		\vskip9mm
+		\large{\textbf{by}}
+		\vskip9mm
+		\textbf{\@author}
+		\vskip9mm
+		\textbf{School of Electrical, Computer and Telecommunications Engineering}
+		\vskip9mm
+		\textbf{\@submitdate}
+		\vskip9mm
+		Supervisor:~\@supervisor
 	\end{center}
 	\newpage
 }
-\renewcommand{\baselinestretch}{1.5}
 \def\sog{
 	\thispagestyle{empty}
 	\chapter*{Statement of Originality}
 
-I, \@author, declare that this thesis, submitted as part of the
-requirements for the award of Bachelor of Engineering, in the School of
-Electrical, Computer and Telecommunications Engineering, University of
-Wollongong, is wholly my own work unless otherwise referenced or acknowledged.
-The document has not been submitted for qualifications or assessment at any
-other academic institution.
-	
-As author of this thesis, I also hereby grant, subject to any prior confidentially agreements, SECTE permission, to use, distribute, publish, exhibit, record, digitize broadcast, reproduce and archive this work for the purposes of further research and teaching.
+	I, \@author, declare that this thesis, submitted as part of the
+	requirements for the award of Bachelor of Engineering, in the School of
+	Electrical, Computer and Telecommunications Engineering, University of
+	Wollongong, is wholly my own work unless otherwise referenced or acknowledged.
+	The document has not been submitted for qualifications or assessment at any
+	other academic institution.
 
-\textit{(strike out that which does not apply)}\\
-This thesis;\\
-\begin{tabular}{p{5cm} l }
- \ IS &\\
- \ IS NOT &\\ 
-\end{tabular}\\
+	As author of this thesis, I also hereby grant, subject to any prior confidentially agreements, SECTE permission, to use, distribute, publish, exhibit, record, digitize broadcast, reproduce and archive this work for the purposes of further research and teaching.
 
-subject to a prior confidentially agreement. 
+	%\textit{(strike out that which does not apply)}\\
+	This thesis;\\
+	\begin{tabular}{p{5cm} l }
+		\ifthenelse{\equal{\@isunderprioragreement}{no}}{
+			% If option choice is yes
+		\sout{IS}     & \\
+		IS NOT        & \\
+		}{
+			\ifthenelse{\equal{\@isunderprioragreement}{yes}}{
+				% If option choice is no
+		IS            & \\
+		\sout{IS NOT} & \\
+			}{
+				% Default case if option choice is neither yes nor no
+		IS            & \\
+		IS NOT        & \\
+			}
+		}
+	\end{tabular}\\
+
+	subject to a prior confidentially agreement.
 
 	\vspace{2cm}
 	\begin{tabular}{r p{8cm}}
-	Signature:&\hrulefill\\
-	&\\
-	Print Name:&\hrulefill\\
-	&\\
-	Student ID Number:&\@studentid\\
-	&\\
-	Date:&\hrulefill\\
+		\ifthenelse{\equal{\@signaturefilepath}{}}{
+			% If signature path is empty
+		Signature:         & \hrulefill                                                 \\
+		}{
+			% If signature path is provided, include it inline
+		Signature:         & \includegraphics[width=0.3\textwidth]{\@signaturefilepath} \\
+		}
+		                   &                                                            \\
+		Print Name:        & \@author                                                   \\
+		                   &                                                            \\
+		Student ID Number: & \@studentid                                                \\
+		                   &                                                            \\
+		Date:              & \today                                                     \\
 	\end{tabular}
 	\newpage
 }

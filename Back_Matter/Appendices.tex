@@ -1,9 +1,27 @@
-\chapter{An Appendix}\label{app:an}
-This is an Appendix. In particular, it is Appendix~\ref{app:an}. In particular
-it should be your Project Plan and Specification. Notice that the numbering of
-appendices is based A, B, C \ldots etc.
+\chapter{Project Proposal}\label{app:an}
 
-\chapter{Another Appendix}\label{app:another}
+Include the project propsal, without the literature planner.
+
+For PDFs, a good way to include them is to have a figure (not included in toc with *) of the first page.
+Then include all the other pages using pdfpages package. Using the figure first allows for the headers to
+match correctly.
+
+% This includes it onto the first page
+% \begin{figure}[H]
+%     \begin{singlespace}
+%         \centering
+%         \includegraphics[width=\linewidth]{Back_Matter/ProposalPg1.png}
+%     \end{singlespace}
+% \end{figure}
+
+% This nicely joins the PDF after the appendix page. (exclude first page using tool like ilovepdf)
+%\includepdf[pages=-]{Back_Matter/Proposal.pdf}
+
+\chapter{Logbook Summary Signature Sheet}\label{app:another}
 
 This is another Appendix, namely Appendix~\ref{app:another}. This appendix
-should be your Logbook Summary Signature Sheet.
+should be your Logbook Summary Signature Sheet, template can be found in information booklet on moodle.
+
+\chapter{Another Appendix}
+
+After the other two, the main idea is to place anything that doesn't fit nicely into the flow of your report. Things like code and schematics.

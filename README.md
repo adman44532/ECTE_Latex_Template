@@ -2,17 +2,27 @@
 ##### By Adam Pigram
 A LaTeX Report template for University of Wollongong School of Electrical, Computer &amp; Telecommunications Engineering based on the original provided within the ECTE Thesis Subject.
 
+Information in this template may outdate overtime. Utilise subject moodle material (e.g. Information Booklet) for up-to-date requirements and crossreference this.
+
+Additions to this template can be made through a pull request and merged on approval.
+
 ## TL;DR & Getting Started
 The template is broken into three main writing sections, `Front_Matter/`, `Body/` and `Back_Matter/`. Go through each file replacing/filling out the information as needed.
 
 All of the sections get compiled into `Thesis_Main.tex`, which is where you will build the project from and includes all the other files.
 
-After that, is writing the body of the report within the `Body/` folder. Following the naming scheme and structure seen in the examples. When writing a new chapter, include it in the `Thesis_Main.tex`.
+After that, is writing the body of the report within the `Body/` folder. Feel free to use any naming scheme for the files, but an example is provided.
 
 Add any references in `Body/References.bib` when needed, following the examples or using alternative settings from online resources.
 
+At the top of `Thesis_Main.tex`, there is a section for student details and options for the Statement of Originality. Fill these in before submission.
+
+Ensure that all the requirement material is submitted with your final report. `Thesis_Main.tex` and `Back_Matter/Appendicies.tex` contain what it can, but may change. See subject information booklet.
+
 ## LaTeX
-LaTeX (Latex) is a markup language similar to Markdown or HTML and is based on TeX. Writing Latex can be similar to mixing Microsoft Word with coding. It does have a high learning curve associated with it, however, it offers far greater customisation options which is standardised within the document. LaTeX is highly used within academia and usually has a distinct style out the box that most people use.
+LaTeX (Latex) is a markup language similar to Markdown or HTML and is based on TeX. Writing Latex can be similar to mixing Microsoft Word mixed with coding. It does have a high learning curve associated with it, however, it offers far greater customisation options which is standardised within the document. LaTeX is highly used within academia and usually has a distinct style out the box that most people use.
+
+The template found here is a beginner friendly guide to simply writing the report, without the hassles of styling.
 
 ## The Template
 
@@ -29,23 +39,25 @@ Additionally the template includes directories for `Figures/` and `Tables/` to m
 ### Front Matter
 
 As per the ECTE499 Information Booklet, the Front Matter includes:
-1. Title Page
-2. Abstract
-3. Statement of Originality (SOG)
-4. Table of Contents
-5. List of Figures
-6. List of Tables
-7. List of Abbreviations and Symbols (Glossary)
-8. Changes
-9. Acknowledgements
+1. Title Page - `Thesis_Styles.sty`
+2. Abstract - `Front_Matter/Abstract.tex`
+3. Statement of Originality (SOG) - `Thesis_Styles.sty`
+4. Table of Contents - `Thesis_Styles.sty`
+5. List of Figures - `Thesis_Styles.sty`
+6. List of Tables - `Thesis_Styles.sty`
+7. List of Abbreviations and Symbols (Glossary) - `Front_Matter/Glossary.tex`
+8. Changes - `Front_Matter/Changes.tex`
+9. Acknowledgements - `Front_Matter/Acknowledgements.tex`
 
-Most of these are handled within the `Thesis_Styles.sty` (Talked about later).
-
-As a writer you should be filling out the author information at the top of the `ECTE499_Thesis_Main.tex`. These values will then automatically fill out information in these front matters using macros.
+As a writer you should be filling out the author information and sog at the top of the `Thesis_Main.tex`. These values will then automatically fill out information in these front matters using macros.
 
 Table of Contents, Figures, Tables are all automatically logged when you define them in your documents.
 
-Other things to be mindful of changing is the Glossary, Acknowledgements and Changes. These are not automatically handled as they vary between reports.
+Include a pdf or png of your Signiture, or leave `\signature{}` blank for a print out version with a line to write on.
+
+Be mindful of changing is the Glossary, Acknowledgements and Changes. These are not automatically handled as they vary between reports.
+
+Once a draft version of your report is submitted, you must include **ONLY the first page** of the similarity report from turnitin. The information booklet and moodle site specify how to get the right PDF, but this template includes in `Thesis_Main.tex` on how to add that into the report.
 
 ### Body
 
@@ -56,7 +68,7 @@ The main body contains:
 4. Conclusions
 5. References
 
-References is not specified as Back Matter
+References is not specified as Back Matter (Even though it kinda is). This report includes references in the body but can be moved to Back on user preference.
 
 The example in this template gives an example naming structure to keep things in order and organised, but any naming scheme you want is fine as well.
 
@@ -66,16 +78,20 @@ All of the Body need to be added into the `Thesis_Main.tex` document as a `\incl
 
 The Back Matter only contains the Appendicies, where this can be appended to in the `Back_Matter/Appendices.tex` file. Alternatively you could separate each Appendix Item into its own file if need be.
 
+It is important to add the required appendicies which can be found in the Information booklet. This template gives examples of including the Project Proposal and Logbook.
+
 ### Styles
 
 All of the main styles and macros are placed into `Thesis_Styles.sty`, which is imported into the main document at the top. These styles are based on the Information Booklet provided and are noted within the file for reference.
 
 There shouldn't really be a need for defining anything else within this file, unless there are custom macros or redefining commands that you would like to add to this.
 
+The styles file uses the variables in the `Thesis_Main.tex` to fill out the preamble for the report.
+
 ## Setting Up LaTeX
 
 There are two main ways of using LaTeX:
-1. Overleaf - A web based Google-Docs-like tool that is an all-in-one solution to get started.
+1. Overleaf (Recommended for Beginners) - A web based Google-Docs-like tool that is an all-in-one solution to get started.
 2. Locally - This involves downloading a LaTeX distribution and then editing the files with a text editor.
 
 Overleaf is free for basic use and is a powerful tool for getting things started straight away. There is a paid version of it to be aware of as there are limitations with large file document sizes. Overleaf also has great documentation which can be used by anyone on learning LaTeX.
@@ -84,7 +100,15 @@ For doing it locally, on Windows you can use a distribution like MikTex and a co
 
 [Windows + VSCode install](https://www.youtube.com/watch?v=4lyHIQl4VM8)
 
-For users of the Nix package manager, a flake is included that will spin up a shell with all of the required texlive dependencies by entering this repo's directory and calling ```nix develop```.
+Additionally, some of the settings worth changing in VSCode include:
+```json
+"latex-workshop.latex.autoClean.run": "onSucceeded",
+"latex-workshop.latex.autoBuild.run": "onSave",
+"latex-workshop.latex.outDir": "%DIR%/out"
+```
+These can be placed inside `.vscode/settings.json` or under user settings.
+
+For Linux users with Nix package manager, a flake is included that will spin up a shell with all of the required texlive dependencies by entering this repo's directory and calling ```nix develop```.
 
 ## Using LaTeX
 
@@ -149,10 +173,10 @@ Figures are best copy pasted, the snippet below will give you a well formatted i
 
 Size can be changed via the width property.
 
-`[!h]` Places it where it is called, rather than the bottom of a page. 
+`[H]` Places it where it is called, rather than the bottom of a page. 
 
 ```latex
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{singlespace}
 \centering
 \includegraphics[width=8cm]{Figures/FBD.pdf}
@@ -219,6 +243,8 @@ Tables are probably one of the weirdest things to create in LaTeX, they rely on 
 
 They do however follow similar rules to Figures in styling for positioning, labels and captions.
 
+`[H]` Places it where it is called, rather than the bottom of a page. 
+
 A basic 3x3 table looks like this:
 ```latex
 \begin{tabular}{|c|c|c|}
@@ -233,19 +259,19 @@ It then places a line underneath, then defines each cell between `&`, ending a r
 
 A more complicated example.
 ```latex
-\begin{table}[!h]
-\centering
-\begin{tabular}{l|l|l|l|}
-\multicolumn{1}{l}{}&\multicolumn{1}{l}{}&\multicolumn{2}{c}{TO}\\ 
-\cline{3-4}
-\multicolumn{1}{l}{}&\multicolumn{1}{c|}{}&\multicolumn{1}{c|}{AC}&\multicolumn{1}{c|}{DC}\\ 
-\cline{2-4}
-\multirow{2}{*}{FROM}&\multicolumn{1}{c|}{AC}&Cycloconverter&Rectifier\\ 
-&\multicolumn{1}{c|}{DC}&Inverter&Chopper\\ 
-\cline{2-4}
-\end{tabular}
-\caption[Caption for List of Tables]{Classification of Conversion Circuits}
-\label{conversion}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|l|l|l|}
+        \multicolumn{1}{l}{}  & \multicolumn{1}{l}{}    & \multicolumn{2}{c}{TO}                            \\
+        \cline{3-4}
+        \multicolumn{1}{l}{}  & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{AC} & \multicolumn{1}{c|}{DC} \\
+        \cline{2-4}
+        \multirow{2}{*}{FROM} & \multicolumn{1}{c|}{AC} & Cycloconverter          & Rectifier               \\
+                              & \multicolumn{1}{c|}{DC} & Inverter                & Chopper                 \\
+        \cline{2-4}
+    \end{tabular}
+    \caption[Caption for List of Tables]{Classification of Conversion Circuits}
+    \label{conversion}
 \end{table}
 ```
 
@@ -253,8 +279,12 @@ A more complicated example.
 
 This template does support code blocks through the listings and color packages. The styling of the code block can be changed in `Thesis_Styles.sty` under the `\lstset` tag.
 
+Additional `\lstset` blocks can be added to accomodate different languages, in the `Thesis_Styles.sty` C++ and HTML have been added as examples.
+
+Example usage is below
+
 ```latex
-\begin{lstlisting}
+\begin{lstlisting}[style=c++]
     #include <iostream>
     
     int main() { std::cout << "Hello World!";
